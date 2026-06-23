@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="mx.edu.buap.servicetracker.controller.GestionController">
+
+    <center>
+
+        <VBox alignment="CENTER" spacing="15">
+
+            <Label text="Gestión de Servicios"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+            <Label text="Pantalla en construcción" />
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

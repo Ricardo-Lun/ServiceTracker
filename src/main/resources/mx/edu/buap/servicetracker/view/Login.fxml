@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="mx.edu.buap.servicetracker.controller.LoginController">
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="15">
+
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <Label text="Service Tracker"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+
+            <TextField fx:id="txtUsuario"
+                       promptText="Usuario"
+                       maxWidth="250"/>
+
+            <PasswordField fx:id="txtPassword"
+                           promptText="Contraseña"
+                           maxWidth="250"/>
+
+            <Button text="Iniciar Sesión"
+                    onAction="#iniciarSesion"
+                    prefWidth="250"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

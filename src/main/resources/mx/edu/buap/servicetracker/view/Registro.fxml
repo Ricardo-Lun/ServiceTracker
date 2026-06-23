@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="mx.edu.buap.servicetracker.controller.RegistroController">
+
+    <center>
+
+        <VBox alignment="CENTER" spacing="15">
+
+            <Label text="Registro de Dispositivos"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+            <Button text="Ir a Gestión"
+                    onAction="#abrirGestion"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
