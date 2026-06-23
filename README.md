@@ -7,7 +7,7 @@ Plataforma de gestión de tickets e incidencias de TI que permite registrar, asi
 
 ## Primera reunión con el cliente
 
-Se solicitó la creación de una aplicación para el área de soporte técnico de una empresa. La aplicación debe:
+Durante la primera reunión se solicitó la creación de una aplicación para el área de soporte técnico de una empresa. La aplicación debe:
 
 * Asignar la prioridad de cada dispositivo.
 * Registrar el estado de la reparación o mantenimiento.
@@ -32,13 +32,24 @@ Durante la segunda reunión se definieron con mayor detalle los requerimientos d
 
 ---
 
-# Requerimientos Funcionales
+## Tercera reunión con el cliente
 
-## RF-01. Registro de dispositivos
+Durante la tercera reunión se aclararon varias condiciones del uso del sistema,
+
+* El programa será utilizado en un único equipo maestro.
+* No se necesitará interconexión entre varios equipos ni varios usuarios.
+* El propietario no desea gastar en el mantenimiento de una base de datos.
+* Se utilizarán JSON para almacenar la información con el fin de hacer accesible el programa.
+
+---
+
+## Requerimientos Funcionales
+
+### RF-01. Registro de dispositivos
 
 El sistema deberá permitir registrar cada dispositivo que ingrese al área de soporte técnico.
 
-### Datos a almacenar
+**Datos a almacenar**
 
 * Nombre del propietario.
 * Área o departamento al que pertenece.
@@ -50,11 +61,11 @@ El sistema deberá permitir registrar cada dispositivo que ingrese al área de s
 
 ---
 
-## RF-02. Asignación de prioridad
+### RF-02. Asignación de prioridad
 
 El sistema deberá permitir asignar una prioridad al dispositivo.
 
-### Niveles de prioridad
+**Niveles de prioridad**
 
 * Alta
 * Media
@@ -62,22 +73,22 @@ El sistema deberá permitir asignar una prioridad al dispositivo.
 
 ---
 
-## RF-03. Asignación del técnico responsable
+### RF-03. Asignación del técnico responsable
 
 El sistema deberá permitir asignar un técnico responsable para cada servicio.
 
-### Información del técnico
+**Información del técnico**
 
 * Nombre del técnico.
 * Fecha de asignación.
 
 ---
 
-## RF-04. Gestión del estado de reparación
+### RF-04. Gestión del estado de reparación
 
 El sistema deberá permitir registrar y actualizar el estado de la reparación.
 
-### Estados posibles
+**Estados posibles**
 
 * Recibido.
 * En diagnóstico.
@@ -90,17 +101,17 @@ El sistema deberá permitir registrar y actualizar el estado de la reparación.
 
 ---
 
-## RF-05. Registro de comentarios del usuario
+### RF-05. Registro de comentarios del usuario
 
 El sistema deberá almacenar observaciones o comentarios proporcionados por el dueño del equipo.
 
 ---
 
-## RF-06. Registro de actividades realizadas
+### RF-06. Registro de actividades realizadas
 
 El sistema deberá registrar las acciones realizadas por el técnico durante el servicio.
 
-### Ejemplos
+**Ejemplos**
 
 * Limpieza interna.
 * Cambio de memoria RAM.
@@ -110,11 +121,11 @@ El sistema deberá registrar las acciones realizadas por el técnico durante el 
 
 ---
 
-## RF-07. Consulta de información de mantenimientos
+### RF-07. Consulta de información de mantenimientos
 
 El sistema deberá permitir consultar el historial y los detalles de cada servicio realizado.
 
-### Información mostrada
+**Información mostrada**
 
 * Datos del propietario.
 * Características del equipo.
@@ -128,11 +139,11 @@ El sistema deberá permitir consultar el historial y los detalles de cada servic
 
 ---
 
-## RF-08. Generación de reporte técnico
+### RF-08. Generación de reporte técnico
 
 El sistema deberá generar un reporte final del mantenimiento o reparación.
 
-### El reporte deberá contener
+**El reporte deberá contener**
 
 * Información del propietario.
 * Área correspondiente.
@@ -147,22 +158,22 @@ El sistema deberá generar un reporte final del mantenimiento o reparación.
 
 ---
 
-## RF-09. Exportación del reporte
+### RF-09. Exportación del reporte
 
 El sistema deberá permitir exportar el reporte técnico en formato PDF.
 
-### El archivo PDF deberá poder
+**El archivo PDF deberá poder**
 
 * Guardarse en el equipo.
 * Imprimirse.
 
 ---
 
-## RF-10. Búsqueda de servicios
+### RF-10. Búsqueda de servicios
 
 El sistema deberá permitir localizar registros mediante diferentes criterios.
 
-### Filtros de búsqueda
+**Filtros de búsqueda**
 
 * Nombre del propietario.
 * Área o departamento.
@@ -174,103 +185,94 @@ El sistema deberá permitir localizar registros mediante diferentes criterios.
 
 ---
 
-## RF-11. Actualización de información
+### RF-11. Actualización de información
 
 El sistema deberá permitir modificar la información de un registro mientras el servicio no haya sido concluido.
 
 ---
 
-## RF-12. Consulta del historial de reparaciones
+### RF-12. Consulta del historial de reparaciones
 
 El sistema deberá conservar un historial de servicios realizados para futuras consultas.
 
 ---
 
-# Requerimientos No Funcionales
+## Requerimientos No Funcionales
 
-## RNF-01. Usabilidad
+### RNF-01. Usabilidad
 
 La aplicación deberá contar con una interfaz gráfica sencilla, intuitiva y fácil de utilizar por el personal de soporte técnico.
 
 ---
 
-## RNF-02. Rendimiento
+### RNF-02. Rendimiento
 
 Las consultas y búsquedas deberán responder en un tiempo menor a tres segundos bajo condiciones normales de operación.
 
 ---
 
-## RNF-03. Disponibilidad
+### RNF-03. Disponibilidad
 
 La aplicación deberá estar disponible durante el horario laboral del área de soporte técnico.
 
 ---
 
-## RNF-04. Seguridad de acceso
+### RNF-04. Seguridad de acceso
 
-El sistema deberá permitir el acceso únicamente a usuarios autorizados mediante nombre de usuario y contraseña.
+El sistema deberá permitir el acceso únicamente al usuario autorizado mediante nombre de usuario y contraseña.
 
 ---
 
-## RNF-05. Integridad de la información
+### RNF-05. Integridad de la información
 
 La información almacenada no deberá perderse ni alterarse accidentalmente.
 
 ---
 
-## RNF-06. Persistencia de datos
+### RNF-06. Persistencia de datos
 
-Toda la información deberá almacenarse en una base de datos para conservar los registros de mantenimiento y reparación.
+Toda la información deberá almacenarse en archivos JSON para conservar los registros de mantenimiento y reparación.
 
 ---
 
-## RNF-07. Compatibilidad
+### RNF-07. Compatibilidad
 
 La aplicación deberá poder ejecutarse en equipos con sistema operativo Windows 10 o superior.
 
 ---
 
-## RNF-08. Escalabilidad
+### RNF-08. Escalabilidad
 
 El sistema deberá permitir agregar nuevas funcionalidades o módulos sin afectar las funciones existentes.
 
 ---
 
-## RNF-09. Mantenibilidad
+### RNF-09. Mantenibilidad
 
 La estructura del sistema deberá facilitar la corrección de errores y la incorporación de mejoras.
 
 ---
 
-## RNF-10. Confiabilidad
+### RNF-10. Confiabilidad
 
 El sistema deberá garantizar que los datos registrados y los reportes generados sean consistentes y precisos.
 
 ---
 
-## RNF-11. Generación de PDF
+### RNF-11. Formato de PDF
 
 Los reportes exportados deberán conservar un formato legible y profesional, permitiendo su impresión sin pérdida de información.
 
 ---
 
-## RNF-12. Capacidad
+### RNF-12. Capacidad
 
 El sistema deberá soportar el almacenamiento de múltiples registros de dispositivos y mantenimientos sin degradar significativamente el rendimiento.
-
----
-
-# Actores del Sistema
-
-| Actor                        | Descripción                                                             |
-| ---------------------------- | ----------------------------------------------------------------------- |
-| Encargado de soporte técnico | Registra equipos, asigna prioridades y técnicos responsables.           |
-| Técnico de soporte           | Actualiza el estado del servicio y registra las actividades realizadas. |
-| Administrador                | Gestiona usuarios y consulta toda la información del sistema.           |
-| Propietario del equipo       | Proporciona información y comentarios sobre las fallas del dispositivo. |
 
 ---
 
 # Objetivo
 
 Desarrollar una aplicación que permita administrar de manera eficiente el proceso de recepción, mantenimiento y reparación de equipos dentro del área de soporte técnico, facilitando el seguimiento de cada servicio y la generación de reportes técnicos en formato PDF.
+
+---
