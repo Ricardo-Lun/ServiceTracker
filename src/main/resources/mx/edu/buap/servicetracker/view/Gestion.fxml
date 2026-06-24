@@ -6,17 +6,108 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="mx.edu.buap.servicetracker.controller.GestionController">
 
+    <top>
+        <Label text="Gestión de Servicios"
+               style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    </top>
+
+    <HBox spacing="10">
+
+        <Button text="← Regresar"
+                onAction="#volverRegistro"/>
+
+        <Label text="Gestión de Servicios"
+               style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    </HBox>
+
     <center>
+        <TableView fx:id="tablaServicios">
 
-        <VBox alignment="CENTER" spacing="15">
+            <columns>
 
-            <Label text="Gestión de Servicios"
-                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                <TableColumn fx:id="colFolio"
+                             text="Folio"/>
 
-            <Label text="Pantalla en construcción" />
+                <TableColumn fx:id="colPropietario"
+                             text="Propietario"/>
 
-        </VBox>
+                <TableColumn fx:id="colEquipo"
+                             text="Equipo"/>
 
+                <TableColumn fx:id="colEstado"
+                             text="Estado"/>
+
+                <TableColumn fx:id="colTecnico"
+                             text="Técnico"/>
+
+            </columns>
+
+        </TableView>
     </center>
+
+    <bottom>
+        <HBox spacing="30">
+            <VBox spacing="8">
+                <Separator/>
+
+                <Label text="Detalle del Servicio"
+                       style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+                <Label fx:id="lblPropietario"
+                       text="Propietario:"/>
+
+                <Label fx:id="lblArea"
+                       text="Área:"/>
+
+                <Label fx:id="lblMarca"
+                       text="Marca:"/>
+
+                <Label fx:id="lblModelo"
+                       text="Modelo:"/>
+
+                <Label fx:id="lblSerie"
+                       text="Serie:"/>
+
+                <Label fx:id="lblTipo"
+                       text="Tipo:"/>
+
+                <Label text="Comentarios:"/>
+
+                <TextArea fx:id="txtComentarios"
+                          editable="false"
+                          prefHeight="100"/>
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="Asignación"
+                       style="-fx-font-size:18px; -fx-font-weight:bold;"/>
+
+                <Label text="Técnico"/>
+
+                <ComboBox fx:id="cbTecnico"/>
+
+                <Label text="Fecha de asignación"/>
+
+                <DatePicker fx:id="dpFechaAsignacion"/>
+
+                <Label text="Fecha estimada de entrega"/>
+
+                <DatePicker fx:id="dpFechaEstimada"/>
+
+                <Button text="Actualizar asignación"
+                        onAction="#actualizarAsignacion"/>
+
+                <Separator/>
+
+                <Label text="Estado del servicio"/>
+
+                <ComboBox fx:id="cbEstado"/>
+
+                <Button text="Actualizar estado"
+                        onAction="#actualizarEstado"/>
+            </VBox>
+        </HBox>
+    </bottom>
 
 </BorderPane>

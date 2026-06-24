@@ -1,23 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fitToWidth="true"
             fx:controller="mx.edu.buap.servicetracker.controller.RegistroController">
 
-    <center>
+    <content>
 
-        <VBox alignment="CENTER" spacing="15">
+        <VBox spacing="15">
 
-            <Label text="Registro de Dispositivos"
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Registrar dispositivo"
                    style="-fx-font-size: 24px; -fx-font-weight: bold;" />
 
-            <Button text="Ir a Gestión"
-                    onAction="#abrirGestion"/>
+            <Separator/>
+
+            <Label text="Datos del propietario"/>
+
+            <GridPane hgap="10" vgap="10">
+
+                <Label text="Nombre del propietario"/>
+                <TextField fx:id="txtPropietario"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Área / Departamento"
+                       GridPane.rowIndex="1"/>
+
+                <TextField fx:id="txtArea"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Datos del equipo"/>
+
+            <GridPane hgap="10" vgap="10">
+
+                <Label text="Marca"/>
+                <TextField fx:id="txtMarca"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Modelo"
+                       GridPane.rowIndex="1"/>
+
+                <TextField fx:id="txtModelo"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="Número de serie"
+                       GridPane.rowIndex="2"/>
+
+                <TextField fx:id="txtSerie"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="Tipo de dispositivo"
+                       GridPane.rowIndex="3"/>
+
+                <ComboBox fx:id="cbTipo"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="3"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Información del servicio"/>
+
+            <GridPane hgap="10" vgap="10">
+
+                <Label text="Fecha de ingreso"/>
+
+                <DatePicker fx:id="dpFechaIngreso"
+                            GridPane.columnIndex="1"/>
+
+                <Label text="Prioridad"
+                       GridPane.rowIndex="1"/>
+
+                <ComboBox fx:id="cbPrioridad"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
+
+            </GridPane>
+
+            <Separator/>
+
+            <Label text="Comentarios del usuario"/>
+
+            <TextArea fx:id="txtComentarios"
+                      prefHeight="120"/>
+
+            <HBox spacing="10">
+
+                <Button text="Limpiar"
+                        onAction="#limpiarFormulario"/>
+
+                <Button text="Guardar dispositivo"
+                        onAction="#guardarDispositivo"/>
+
+                <Button text="Gestión de servicios"
+                        onAction="#abrirGestion"/>
+            </HBox>
 
         </VBox>
 
-    </center>
+    </content>
 
-</BorderPane>
+</ScrollPane>

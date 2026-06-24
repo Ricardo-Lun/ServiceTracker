@@ -8,4 +8,6 @@ module mx.edu.buap.servicetracker {
 
     exports mx.edu.buap.servicetracker;
     exports mx.edu.buap.servicetracker.controller;
+    exports mx.edu.buap.servicetracker.model;
+    exports mx.edu.buap.servicetracker.service;
 }
