@@ -4,6 +4,7 @@ package mx.edu.buap.servicetracker.controller;
 import mx.edu.buap.servicetracker.model.Dispositivo;
 import mx.edu.buap.servicetracker.model.Servicio;
 import mx.edu.buap.servicetracker.service.DatosSistema;
+import mx.edu.buap.servicetracker.service.JsonService;
 
 // Implementación con las interfaces gráficas
 import javafx.fxml.FXML;
@@ -96,8 +97,7 @@ public class RegistroController {
 
         servicio.setFolio(
                 String.format(
-                        "ST-%04d",
-                        DatosSistema.servicios.size() + 1
+                        DatosSistema.generarNuevoFolio()
                 )
         );
 
@@ -117,6 +117,10 @@ public class RegistroController {
         alerta.setHeaderText(null);
         alerta.setContentText("Servicio registrado con folio: " + servicio.getFolio());
         alerta.showAndWait();
+
+        limpiarFormulario();
+
+        JsonService.guardarServicios();
     }
 
     @FXML

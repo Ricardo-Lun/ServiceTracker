@@ -1,5 +1,7 @@
 package mx.edu.buap.servicetracker.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
 
 public class Servicio {
@@ -11,6 +13,8 @@ public class Servicio {
     private LocalDate fechaAsignacion;
     private LocalDate fechaEstimadaEntrega;
     private LocalDate fechaEntrega;
+
+    private List<Actividad> actividades = new ArrayList<>();
 
     public Servicio() {
     }
@@ -35,6 +39,12 @@ public class Servicio {
 
     public LocalDate getFechaEntrega() {return fechaEntrega;}
     public void setFechaEntrega(LocalDate fechaEntrega) {this.fechaEntrega = fechaEntrega;}
+
+    public List<Actividad> getActividades() {return actividades;}
+    public void setActividades(List<Actividad> actividades) {this.actividades = actividades;}
+
+    private String diagnostico;
+    private String comentariosFinales;
 
     @Override
     public String toString() {

@@ -7,43 +7,45 @@
             fx:controller="mx.edu.buap.servicetracker.controller.GestionController">
 
     <top>
-        <Label text="Gestión de Servicios"
-               style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <VBox spacing="10">
+            <Button text="← Regresar"
+                    onAction="#volverRegistro"/>
+
+            <Label text="Gestión de Servicios"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        </VBox>
     </top>
 
-    <HBox spacing="10">
-
-        <Button text="← Regresar"
-                onAction="#volverRegistro"/>
-
-        <Label text="Gestión de Servicios"
-               style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-
-    </HBox>
 
     <center>
-        <TableView fx:id="tablaServicios">
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <HBox spacing="10">
+                <Label text="Propietario"/>
+                <TextField fx:id="txtBuscarPropietario" prefWidth="150"/>
 
-            <columns>
+                <Label text="Técnico"/>
+                <ComboBox fx:id="cbFiltroTecnico" prefWidth="140"/>
 
-                <TableColumn fx:id="colFolio"
-                             text="Folio"/>
+                <Label text="Estado"/>
+                <ComboBox fx:id="cbFiltroEstado" prefWidth="160"/>
 
-                <TableColumn fx:id="colPropietario"
-                             text="Propietario"/>
+                <Label text="Prioridad"/>
+                <ComboBox fx:id="cbFiltroPrioridad" prefWidth="120"/>
 
-                <TableColumn fx:id="colEquipo"
-                             text="Equipo"/>
+                <Button text="Buscar" onAction="#buscarServicios"/>
+                <Button text="Limpiar" onAction="#limpiarFiltros"/>
+            </HBox>
 
-                <TableColumn fx:id="colEstado"
-                             text="Estado"/>
-
-                <TableColumn fx:id="colTecnico"
-                             text="Técnico"/>
-
-            </columns>
-
-        </TableView>
+            <TableView fx:id="tablaServicios" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colFolio" text="Folio"/>
+                    <TableColumn fx:id="colPropietario" text="Propietario"/>
+                    <TableColumn fx:id="colEquipo" text="Equipo"/>
+                    <TableColumn fx:id="colEstado" text="Estado"/>
+                    <TableColumn fx:id="colTecnico" text="Técnico"/>
+                </columns>
+            </TableView>
+        </VBox>
     </center>
 
     <bottom>
@@ -101,12 +103,43 @@
                 <Separator/>
 
                 <Label text="Estado del servicio"/>
-
                 <ComboBox fx:id="cbEstado"/>
+                <Button text="Actualizar estado" onAction="#actualizarEstado"/>
 
-                <Button text="Actualizar estado"
-                        onAction="#actualizarEstado"/>
+                <Label text="Eliminar servicio"/>
+                <Button text="Eliminar Servicio" onAction="#eliminarServicio"/>
             </VBox>
+
+            <Separator/>
+
+            <Label text="Actividades"
+                   style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+            <TextArea fx:id="txtActividad"
+                      prefHeight="70"/>
+
+            <Button text="Agregar actividad"
+                    onAction="#agregarActividad"/>
+
+            <TableView fx:id="tablaActividades"
+                       prefHeight="180">
+
+                <columns>
+
+                    <TableColumn fx:id="colFechaActividad"
+                                 text="Fecha"/>
+
+                    <TableColumn fx:id="colDescripcionActividad"
+                                 text="Actividad"/>
+
+                    <TableColumn fx:id="colTecnicoActividad"
+                                 text="Técnico"/>
+
+                </columns>
+
+            </TableView>
+
+            <Button text="Generar Reporte PDF" onAction="#abrirDialogReporte"/>
         </HBox>
     </bottom>
 
