@@ -3,115 +3,115 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 
-<ScrollPane xmlns:fx="http://javafx.com/fxml"
-            fitToWidth="true"
-            fx:controller="mx.edu.buap.servicetracker.controller.RegistroController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" stylesheets="@css/registro.css" fx:controller="mx.edu.buap.servicetracker.controller.RegistroController">
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="main-scroll" >
+            <content>
+                <VBox spacing="25" styleClass="root-container">
+                    <padding>
+                        <Insets top="30" right="40" bottom="30" left="40"/>
+                    </padding>
 
-    <content>
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Registrar dispositivo" styleClass="header-title"/>
+                            <Label text="Ingresa la información del dispositivo y del propietario." styleClass="header-subtitle"/>
+                        </VBox>
+                        <HBox spacing="15" alignment="CENTER_RIGHT">
+                            <Label text="/  Registrar dispositivo" styleClass="breadcrumb"/>
+                        </HBox>
+                    </HBox>
 
-        <VBox spacing="15">
+                    <GridPane hgap="25" vgap="25">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="40"/>
+                            <ColumnConstraints percentWidth="60"/>
+                        </columnConstraints>
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+                        <VBox spacing="15" styleClass="form-card" GridPane.columnIndex="0">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="Datos del propietario" styleClass="card-title"/>
+                            </HBox>
 
-            <Label text="Registrar dispositivo"
-                   style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                            <VBox spacing="8">
+                                <Label text="Nombre del propietario *" styleClass="field-label"/>
+                                <TextField fx:id="txtPropietario" promptText="Ej. María López" styleClass="form-control"/>
+                            </VBox>
 
-            <Separator/>
+                            <VBox spacing="8">
+                                <Label text="Área / Departamento *" styleClass="field-label"/>
+                                <TextField fx:id="txtArea" promptText="Ej. RRHH" styleClass="form-control"/>
+                            </VBox>
+                        </VBox>
 
-            <Label text="Datos del propietario"/>
+                        <VBox spacing="15" styleClass="form-card" GridPane.columnIndex="1">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="Datos del equipo" styleClass="card-title"/>
+                            </HBox>
 
-            <GridPane hgap="10" vgap="10">
+                            <HBox spacing="15">
+                                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                    <Label text="Marca *" styleClass="field-label"/>
+                                    <TextField fx:id="txtMarca" promptText="Ej. Lenovo" styleClass="form-control"/>
+                                </VBox>
+                                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                    <Label text="Modelo *" styleClass="field-label"/>
+                                    <TextField fx:id="txtModelo" promptText="Ej. ThinkPad E14" styleClass="form-control"/>
+                                </VBox>
+                            </HBox>
 
-                <Label text="Nombre del propietario"/>
-                <TextField fx:id="txtPropietario"
-                           GridPane.columnIndex="1"/>
+                            <HBox spacing="15">
+                                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                    <Label text="Número de serie (opcional)" styleClass="field-label"/>
+                                    <TextField fx:id="txtSerie" promptText="Ej. PF3X5ZL1" styleClass="form-control"/>
+                                </VBox>
+                                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                    <Label text="Tipo de dispositivo *" styleClass="field-label"/>
+                                    <ComboBox fx:id="cbTipo" promptText="Selecciona un tipo" styleClass="form-control" maxWidth="1.79E308"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
 
-                <Label text="Área / Departamento"
-                       GridPane.rowIndex="1"/>
+                        <VBox spacing="15" styleClass="form-card" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="Información del servicio" styleClass="card-title"/>
+                            </HBox>
 
-                <TextField fx:id="txtArea"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="1"/>
+                            <HBox spacing="25">
+                                <VBox spacing="8" prefWidth="300">
+                                    <Label text="Fecha de ingreso *" styleClass="field-label"/>
+                                    <DatePicker fx:id="dpFechaIngreso" styleClass="form-control" maxWidth="1.79E308"/>
+                                </VBox>
+                                <VBox spacing="8" prefWidth="300">
+                                    <Label text="Prioridad *" styleClass="field-label"/>
+                                    <ComboBox fx:id="cbPrioridad" promptText="Selecciona prioridad" styleClass="form-control" maxWidth="1.79E308"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
 
-            </GridPane>
+                        <VBox spacing="15" styleClass="form-card" GridPane.rowIndex="2" GridPane.columnSpan="2">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="Comentarios del usuario" styleClass="card-title"/>
+                            </HBox>
+                            <VBox spacing="8">
+                                <Label text="Observaciones o comentarios" styleClass="field-label"/>
+                                <TextArea fx:id="txtComentarios" prefHeight="100" promptText="Describe brevemente el problema..." styleClass="form-control"/>
+                            </VBox>
+                        </VBox>
+                    </GridPane>
 
-            <Separator/>
-
-            <Label text="Datos del equipo"/>
-
-            <GridPane hgap="10" vgap="10">
-
-                <Label text="Marca"/>
-                <TextField fx:id="txtMarca"
-                           GridPane.columnIndex="1"/>
-
-                <Label text="Modelo"
-                       GridPane.rowIndex="1"/>
-
-                <TextField fx:id="txtModelo"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="1"/>
-
-                <Label text="Número de serie"
-                       GridPane.rowIndex="2"/>
-
-                <TextField fx:id="txtSerie"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="2"/>
-
-                <Label text="Tipo de dispositivo"
-                       GridPane.rowIndex="3"/>
-
-                <ComboBox fx:id="cbTipo"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="3"/>
-
-            </GridPane>
-
-            <Separator/>
-
-            <Label text="Información del servicio"/>
-
-            <GridPane hgap="10" vgap="10">
-
-                <Label text="Fecha de ingreso"/>
-
-                <DatePicker fx:id="dpFechaIngreso"
-                            GridPane.columnIndex="1"/>
-
-                <Label text="Prioridad"
-                       GridPane.rowIndex="1"/>
-
-                <ComboBox fx:id="cbPrioridad"
-                          GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
-
-            </GridPane>
-
-            <Separator/>
-
-            <Label text="Comentarios del usuario"/>
-
-            <TextArea fx:id="txtComentarios"
-                      prefHeight="120"/>
-
-            <HBox spacing="10">
-
-                <Button text="Limpiar"
-                        onAction="#limpiarFormulario"/>
-
-                <Button text="Guardar dispositivo"
-                        onAction="#guardarDispositivo"/>
-
-                <Button text="Gestión de servicios"
-                        onAction="#abrirGestion"/>
-            </HBox>
-
-        </VBox>
-
-    </content>
-
-</ScrollPane>
+                    <HBox spacing="15" alignment="BOTTOM_RIGHT">
+                        <Button text="Limpiar" onAction="#limpiarFormulario" styleClass="btn-secondary">
+                        </Button>
+                        <Button text="Guardar dispositivo" onAction="#guardarDispositivo" styleClass="btn-primary">
+                        </Button>
+                        <Button text="Ir A Gestión" onAction="#abrirGestion" styleClass="btn-primary">
+                        </Button>
+                    </HBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

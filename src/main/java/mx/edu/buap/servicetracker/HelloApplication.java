@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
+
 import mx.edu.buap.servicetracker.controller.CredencialesDialogController;
 import mx.edu.buap.servicetracker.service.JsonService;
 import mx.edu.buap.servicetracker.service.UserService;
@@ -35,11 +37,25 @@ public class HelloApplication extends Application {
             dialog.showAndWait();
         }
 
+        Font.loadFont(getClass().getResourceAsStream("/resources/Poppins-Regular.ttf"), 16);
+        Font.loadFont(getClass().getResourceAsStream("/resources/Poppins-Bold.ttf"), 16);
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/buap/servicetracker/view/Login.fxml"));
 
         Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(getClass().getResource("/mx/edu/buap/servicetracker/view/css/login.css").toExternalForm());
+
         stage.setTitle("Service Tracker");
         stage.setScene(scene);
+        stage.show();
+
+        System.out.println(stage.getWidth());
+        System.out.println(stage.getHeight());
+
+        stage.setMaximized(true);
+
+        System.out.println(stage.getWidth());
+        System.out.println(stage.getHeight());
 
         stage.show();
     }

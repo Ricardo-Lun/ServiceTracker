@@ -100,6 +100,10 @@ public class RegistroController {
         try {FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/buap/servicetracker/view/Gestion.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
             stage.setScene(scene);
 
         } catch (Exception e) {

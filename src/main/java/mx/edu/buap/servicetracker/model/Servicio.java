@@ -10,6 +10,7 @@ public class Servicio {
     private Dispositivo dispositivo;
     private String tecnico;
     private String estado;
+    private String prioridad;
     private LocalDate fechaAsignacion;
     private LocalDate fechaEstimadaEntrega;
     private LocalDate fechaEntrega;
@@ -30,6 +31,9 @@ public class Servicio {
 
     public String getEstado() {return estado;}
     public void setEstado(String estado) {this.estado = estado;}
+
+    public String getPrioridad() {return this.dispositivo.getPrioridad();}
+    public void setPrioridad(String prioridad) {this.prioridad = prioridad;}
 
     public LocalDate getFechaAsignacion() {return fechaAsignacion;}
     public void setFechaAsignacion(LocalDate fechaAsignacion) {this.fechaAsignacion = fechaAsignacion;}
@@ -53,7 +57,8 @@ public class Servicio {
                 "folio='" + folio + '\'' +
                 ", tecnico='" + tecnico + '\'' +
                 ", estado='" + estado + '\'' +
-                ", dispositivo=" + dispositivo +
+                ", dispositivo=" + dispositivo + '\'' +
+                ", prioridad=" + dispositivo.getPrioridad() +
                 '}';
     }
 }

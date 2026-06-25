@@ -1,0 +1,108 @@
+.page-subtitle { -fx-text-fill: #64748B; }
+
+/* Tarjetas */
+.filter-card, .form-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0, 0, 2);
+}
+
+.card-title { -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1E293B; }
+
+/* Tabla estilo moderno */
+.data-table {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 16px;
+}
+
+.data-table .column-header {
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-border-color: #F1F5F9;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* BOTONES */
+.btn-primary {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 25;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 10;
+}
+
+.btn-primary:hover { -fx-background-color: #1D4ED8; }
+
+.btn-secondary {
+    -fx-background-color: white;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 8;
+    -fx-text-fill: #334155;
+    -fx-font-weight: bold;
+    -fx-padding: 10 25;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 10;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #F1F5F9;
+    -fx-border-color: #1D4ED8;
+}
+
+.btn-warning {
+    -fx-background-color: #FF0e0e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 25;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 10;
+}
+
+.btn-warning:hover { -fx-background-color: #a70000; }
+
+.form-control {
+    -fx-background-color: white;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563EB;
+}
+
+.field-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+}
+
+.form-control:focused {
+    -fx-border-color: #2563EB;
+    -fx-border-width: 1.5;
+}
+
+.label {
+    -fx-font-size: 16px;
+}
+
+.separator {
+    -fx-background-color: #2563EB;
+}
+
+.header-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F172A;
+}

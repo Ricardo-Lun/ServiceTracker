@@ -40,6 +40,8 @@ public class GestionController {
     private TableColumn<ServicioTabla, String> colEstado;
     @FXML
     private TableColumn<ServicioTabla, String> colTecnico;
+    @FXML
+    private TableColumn<ServicioTabla, String> colPrioridad;
 
     // Variable que indica cual es el servicio que se seleccionó en la tabla
     private Servicio servicioSeleccionado;
@@ -101,6 +103,7 @@ public class GestionController {
         colEquipo.setCellValueFactory(new PropertyValueFactory<>("equipo"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         colTecnico.setCellValueFactory(new PropertyValueFactory<>("tecnico"));
+        colPrioridad.setCellValueFactory(new PropertyValueFactory<>("prioridad"));
 
         colFechaActividad.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colDescripcionActividad.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
@@ -138,6 +141,8 @@ public class GestionController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/buap/servicetracker/view/Registro.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.setResizable(false);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,7 +161,8 @@ public class GestionController {
                             servicio.getDispositivo().getPropietario(),
                             servicio.getDispositivo().getMarca() + " " + servicio.getDispositivo().getModelo(),
                             servicio.getEstado(),
-                            servicio.getTecnico()
+                            servicio.getTecnico(),
+                            servicio.getPrioridad()
                     )
             );
         }
@@ -304,7 +310,7 @@ public class GestionController {
 
             return;
         }
-        if (servicioSeleccionado.getTecnico() == null || servicioSeleccionado.getTecnico().isBlank()) {
+        if (servicioSeleccionado.getTecnico() == null || servicioSeleccionado.getTecnico().isBlank() || servicioSeleccionado.getTecnico().equals("Sin asignar")) {
             mostrarAlerta("Debe asignar un técnico antes de registrar actividades.");
             return;
         }
@@ -371,7 +377,8 @@ public class GestionController {
                                 propietario,
                                 servicio.getDispositivo().getMarca() + " " + servicio.getDispositivo().getModelo(),
                                 estado,
-                                tecnico)
+                                tecnico,
+                                prioridad)
                 );
             }
         }

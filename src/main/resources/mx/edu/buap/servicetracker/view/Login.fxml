@@ -4,35 +4,51 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="mx.edu.buap.servicetracker.controller.LoginController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="mx.edu.buap.servicetracker.controller.LoginController">
     <center>
+        <HBox fillHeight="true">
 
-        <VBox alignment="CENTER"
-              spacing="15">
+            <VBox spacing="25" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" styleClass="left-panel">
 
-            <padding>
-                <Insets top="30" right="30" bottom="30" left="30"/>
-            </padding>
+                <padding><Insets top="50" right="50" bottom="50" left="50"/></padding>
 
-            <Label text="Service Tracker"
-                   style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                <VBox spacing="10">
+                    <Label text="SERVICE TRACKER" styleClass="logo-title"/>
+                    <Label text="Sistema de Gestión de Soporte Técnico" styleClass="subtitle"/>
+                </VBox>
 
-            <TextField fx:id="txtUsuario"
-                       promptText="Usuario"
-                       maxWidth="250"/>
+                <Separator maxWidth="400" /> <Region prefHeight="40"/>
 
-            <PasswordField fx:id="txtPassword"
-                           promptText="Contraseña"
-                           maxWidth="250"/>
+                <VBox spacing="20">
+                    <Label text="• Registra y administra dispositivos"/>
+                    <Label text="• Gestiona reparaciones y mantenimientos"/>
+                    <Label text="• Genera reportes técnicos profesionales"/>
+                    <Label text="• Información segura y confiable"/>
+                </VBox>
+            </VBox>
 
-            <Button text="Iniciar Sesión"
-                    onAction="#iniciarSesion"
-                    prefWidth="250"/>
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS" styleClass="right-panel">
+                <VBox spacing="20" alignment="CENTER" VBox.vgrow="ALWAYS" styleClass="login-card">
+                    <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
 
-        </VBox>
+                    <ImageView fitWidth="120" preserveRatio="true">
+                        <image>
+                            <Image url="@images/logo-shield.png"/>
+                        </image>
+                    </ImageView>
 
+                    <Label text="Inicio de Sesión" styleClass="login-title"/>
+                    <Label text="Ingresa tus credenciales para continuar" styleClass="login-subtitle"/>
+
+                    <TextField fx:id="txtUsuario" promptText="Usuario" prefHeight="45" maxWidth="320"/>
+                    <PasswordField fx:id="txtPassword" promptText="Contraseña" prefHeight="45" maxWidth="320"/>
+
+                    <Button text="Iniciar Sesión" prefHeight="45" prefWidth="320" styleClass="login-button" onAction="#iniciarSesion"/>
+                </VBox>
+            </VBox>
+        </HBox>
     </center>
-
 </BorderPane>

@@ -61,8 +61,18 @@ public class LoginController {
         try {FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/buap/servicetracker/view/Registro.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) txtUsuario.getScene().getWindow();
+
+            double ancho = stage.getWidth();
+            double alto = stage.getHeight();
+
             stage.setScene(scene);
-            stage.setTitle("Registro de Dispositivos");
+
+            stage.setMaximized(true);
+            stage.setResizable(false);
+
+            stage.setWidth(ancho);
+            stage.setHeight(alto);
+
             stage.show();
 
         } catch (Exception e) {
