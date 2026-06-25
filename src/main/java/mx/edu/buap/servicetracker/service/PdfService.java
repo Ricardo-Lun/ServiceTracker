@@ -18,30 +18,20 @@ public class PdfService {
     ) {
 
         try {
-
-            String ruta =
-                    "data/reportes/"
-                            + servicio.getFolio()
-                            + ".pdf";
-
+            String ruta = "data/reportes/" + servicio.getFolio() + ".pdf";
             File archivo = new File(ruta);
 
             if (archivo.exists()) {
-
                 if (!archivo.delete()) {
-
                     return false;
                 }
             }
 
-            Document documento =
-                    new Document();
+            Document documento = new Document();
 
-            PdfWriter.getInstance(
-                    documento,
-                    new FileOutputStream(ruta)
-            );
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta));
 
+            // Comienza la escritura del documento PDF
             documento.open();
 
             var dispositivo = servicio.getDispositivo();
@@ -120,7 +110,6 @@ public class PdfService {
 
             return true;
         } catch (Exception e) {
-
             e.printStackTrace();
 
             return false;

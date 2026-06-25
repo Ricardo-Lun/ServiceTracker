@@ -12,19 +12,16 @@ public class DatosSistema {
     private DatosSistema() {
     }
 
+    // Generador de folios con el formato "ST-%04d" (Donde "%04d" implica un mínimo de 4 digitos)
     public static String generarNuevoFolio() {
 
         int mayor = 0;
 
         for (Servicio servicio : servicios) {
-
             String folio = servicio.getFolio();
 
             try {
-
-                int numero = Integer.parseInt(
-                        folio.replace("ST-", "")
-                );
+                int numero = Integer.parseInt(folio.replace("ST-", ""));
 
                 if (numero > mayor) {
                     mayor = numero;
@@ -34,10 +31,6 @@ public class DatosSistema {
                 e.printStackTrace();
             }
         }
-
-        return String.format(
-                "ST-%04d",
-                mayor + 1
-        );
+        return String.format("ST-%04d", mayor + 1);
     }
 }

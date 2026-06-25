@@ -46,6 +46,7 @@ public class Servicio {
     private String diagnostico;
     private String comentariosFinales;
 
+    //Metodo para convertir el "Servicio" a formato JSON
     @Override
     public String toString() {
         return "Servicio{" +

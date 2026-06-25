@@ -8,13 +8,7 @@ public class ServicioTabla {
     private String estado;
     private String tecnico;
 
-    public ServicioTabla(
-            String folio,
-            String propietario,
-            String equipo,
-            String estado,
-            String tecnico
-    ) {
+    public ServicioTabla(String folio, String propietario, String equipo, String estado, String tecnico) {
         this.folio = folio;
         this.propietario = propietario;
         this.equipo = equipo;

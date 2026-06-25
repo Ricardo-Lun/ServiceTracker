@@ -11,11 +11,7 @@ public class Actividad {
     public Actividad() {
     }
 
-    public Actividad(
-            LocalDate fecha,
-            String descripcion,
-            String tecnico
-    ) {
+    public Actividad(LocalDate fecha, String descripcion, String tecnico) {
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.tecnico = tecnico;

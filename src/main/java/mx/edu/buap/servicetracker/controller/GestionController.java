@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 
 public class GestionController {
 
+    // Variables para colocar los datos generales en la "Tabla De Búsqueda"
     @FXML
     private TableView<ServicioTabla> tablaServicios;
     @FXML
@@ -40,6 +41,10 @@ public class GestionController {
     @FXML
     private TableColumn<ServicioTabla, String> colTecnico;
 
+    // Variable que indica cual es el servicio que se seleccionó en la tabla
+    private Servicio servicioSeleccionado;
+
+    // Variables para colocar los datos detallados en "Detalle Servicio"
     @FXML
     private Label lblPropietario;
     @FXML
@@ -55,6 +60,7 @@ public class GestionController {
     @FXML
     private TextArea txtComentarios;
 
+    // Variables para la actualización de "Técnico" y "Estado"
     @FXML
     private ComboBox<String> cbTecnico;
     @FXML
@@ -64,22 +70,19 @@ public class GestionController {
     @FXML
     private ComboBox<String> cbEstado;
 
-    private Servicio servicioSeleccionado;
-
+    // Variables para el funcionamiento de las "Actividades"
     @FXML
     private TextArea txtActividad;
     @FXML
     private TableView<Actividad> tablaActividades;
     @FXML
-    private TableColumn<Actividad, String>
-            colFechaActividad;
+    private TableColumn<Actividad, String> colFechaActividad;
     @FXML
-    private TableColumn<Actividad, String>
-            colDescripcionActividad;
+    private TableColumn<Actividad, String> colDescripcionActividad;
     @FXML
-    private TableColumn<Actividad, String>
-            colTecnicoActividad;
+    private TableColumn<Actividad, String> colTecnicoActividad;
 
+    // Variables para el "Filtro De Búsqueda"
     @FXML
     private TextField txtBuscarPropietario;
     @FXML
@@ -92,6 +95,7 @@ public class GestionController {
     @FXML
     public void initialize() {
 
+        // Se inicializan tablas y elementos a mostrarse en pantalla
         colFolio.setCellValueFactory(new PropertyValueFactory<>("folio"));
         colPropietario.setCellValueFactory(new PropertyValueFactory<>("propietario"));
         colEquipo.setCellValueFactory(new PropertyValueFactory<>("equipo"));
@@ -102,33 +106,17 @@ public class GestionController {
         colDescripcionActividad.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         colTecnicoActividad.setCellValueFactory(new PropertyValueFactory<>("tecnico"));
 
-        cbFiltroTecnico.getItems().addAll(
-                "Todos",
-                "Juan Pérez",
-                "María García",
-                "Carlos López"
-        );
+        cbTecnico.getItems().addAll("Juan Pérez", "María García", "Carlos López");
+        cbEstado.getItems().addAll("Recibido", "En diagnóstico", "En reparación", "En mantenimiento", "Esperando refacciones", "Reparado", "Entregado", "Cancelado");
+
+        // Se inicializan los filtros de la tabla
+        cbFiltroTecnico.getItems().addAll("Todos", "Juan Pérez", "María García", "Carlos López");
         cbFiltroTecnico.setValue("Todos");
 
-        cbFiltroEstado.getItems().addAll(
-                "Todos",
-                "Recibido",
-                "En diagnóstico",
-                "En reparación",
-                "En mantenimiento",
-                "Esperando refacciones",
-                "Reparado",
-                "Entregado",
-                "Cancelado"
-        );
+        cbFiltroEstado.getItems().addAll("Todos", "Recibido", "En diagnóstico", "En reparación", "En mantenimiento", "Esperando refacciones", "Reparado", "Entregado", "Cancelado");
         cbFiltroEstado.setValue("Todos");
 
-        cbFiltroPrioridad.getItems().addAll(
-                "Todos",
-                "Alta",
-                "Media",
-                "Baja"
-        );
+        cbFiltroPrioridad.getItems().addAll("Todos", "Alta", "Media", "Baja");
         cbFiltroPrioridad.setValue("Todos");
 
         cargarServicios();
@@ -137,94 +125,52 @@ public class GestionController {
                 .selectedItemProperty()
                 .addListener(
                         (observable, anterior, actual) -> {
-
                             if (actual != null) {
                                 mostrarDetalles(actual);
                             }
-
                         });
-
-        cbTecnico.getItems().addAll(
-                "Juan Pérez",
-                "María García",
-                "Carlos López"
-        );
-
-        cbEstado.getItems().addAll(
-                "Recibido",
-                "En diagnóstico",
-                "En reparación",
-                "En mantenimiento",
-                "Esperando refacciones",
-                "Reparado",
-                "Entregado",
-                "Cancelado"
-        );
     }
 
+    //Metodo para regresar a la pantalla de "Registro"
     @FXML
     private void volverRegistro(ActionEvent event) {
-
         try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(
-                            getClass().getResource(
-                                    "/mx/edu/buap/servicetracker/view/Registro.fxml"
-                            )
-                    );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/buap/servicetracker/view/Registro.fxml"));
             Scene scene = new Scene(loader.load());
-
-            Stage stage =
-                    (Stage) ((Node) event.getSource())
-                            .getScene()
-                            .getWindow();
-            stage.setScene(scene);
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();stage.setScene(scene);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    // Metodo para cargar los servicios almacenados en la "Tabla de Busqueda"
     private void cargarServicios() {
 
-        var lista = FXCollections
-                .<ServicioTabla>observableArrayList();
+        var lista = FXCollections.<ServicioTabla>observableArrayList();
 
         for (Servicio servicio : DatosSistema.servicios) {
-
             lista.add(
                     new ServicioTabla(
                             servicio.getFolio(),
-
-                            servicio.getDispositivo()
-                                    .getPropietario(),
-
-                            servicio.getDispositivo()
-                                    .getMarca()
-                                    + " "
-                                    + servicio.getDispositivo()
-                                    .getModelo(),
-
+                            servicio.getDispositivo().getPropietario(),
+                            servicio.getDispositivo().getMarca() + " " + servicio.getDispositivo().getModelo(),
                             servicio.getEstado(),
-
                             servicio.getTecnico()
                     )
             );
         }
-
         tablaServicios.setItems(lista);
     }
 
+    // Metodo para mostrar detalles en el apartado "Detalles Servicio"
     private void mostrarDetalles(ServicioTabla servicioTabla) {
 
         servicioSeleccionado = null;
 
         for (Servicio s : DatosSistema.servicios) {
 
-            if (s.getFolio()
-                    .equals(servicioTabla.getFolio())) {
-
+            if (s.getFolio().equals(servicioTabla.getFolio())) {
                 servicioSeleccionado = s;
                 break;
             }
@@ -252,6 +198,7 @@ public class GestionController {
         cargarActividades();
     }
 
+    // Metodo para eliminar un "Servicio"
     @FXML
     private void eliminarServicio() {
 
@@ -259,41 +206,23 @@ public class GestionController {
             return;
         }
 
-        Alert confirmacion =
-                new Alert(
-                        Alert.AlertType.CONFIRMATION
-                );
-
-        confirmacion.setTitle(
-                "Eliminar servicio"
-        );
-
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Eliminar servicio");
         confirmacion.setHeaderText(null);
+        confirmacion.setContentText("¿Desea eliminar el servicio " + servicioSeleccionado.getFolio() + "?");
 
-        confirmacion.setContentText(
-                "¿Desea eliminar el servicio "
-                        + servicioSeleccionado.getFolio()
-                        + "?"
-        );
+        var resultado = confirmacion.showAndWait();
 
-        var resultado =
-                confirmacion.showAndWait();
-
-        if (resultado.isPresent()
-                && resultado.get() == ButtonType.OK) {
-
-            DatosSistema.servicios.remove(
-                    servicioSeleccionado
-            );
-
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            DatosSistema.servicios.remove(servicioSeleccionado);
             JsonService.guardarServicios();
 
             cargarServicios();
-
             limpiarDetalle();
         }
     }
 
+    // Metodo para limpiar los campos del apartado "Detalle Servicio" y "Actividades"
     private void limpiarDetalle() {
 
         servicioSeleccionado = null;
@@ -306,18 +235,14 @@ public class GestionController {
         lblTipo.setText("Tipo:");
 
         txtComentarios.clear();
-
         tablaActividades.getItems().clear();
-
         cbTecnico.setValue(null);
-
         dpFechaAsignacion.setValue(null);
-
         dpFechaEstimada.setValue(null);
-
         cbEstado.setValue(null);
     }
 
+    //Metodo para actualizar el Técnico y fechas de ingreso/salida de un "Servicio"
     @FXML
     private void actualizarAsignacion() {
 
@@ -329,23 +254,19 @@ public class GestionController {
         servicioSeleccionado.setFechaAsignacion(dpFechaAsignacion.getValue());
         servicioSeleccionado.setFechaEstimadaEntrega(dpFechaEstimada.getValue());
 
-        System.out.println(
-                "Asignación actualizada: "
-                        + servicioSeleccionado.getFolio()
-        );
+        System.out.println("Asignación actualizada: " + servicioSeleccionado.getFolio());
 
         cargarServicios();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
-        alert.setContentText(
-                "Información actualizada correctamente"
-        );
+        alert.setContentText("Información actualizada correctamente");
         alert.showAndWait();
 
         JsonService.guardarServicios();
     }
 
+    //Metodo para actualizar el estado de un "Servicio"
     @FXML
     private void actualizarEstado() {
 
@@ -369,17 +290,17 @@ public class GestionController {
         JsonService.guardarServicios();
     }
 
+    //Metodo para agregar "Actividades" a un "Servicio"
     @FXML
     private void agregarActividad() {
 
         if (servicioSeleccionado == null) {
             return;
         }
+
         if (txtActividad.getText().isBlank()) {
 
-            mostrarAlerta(
-                    "Debe ingresar una descripción de actividad."
-            );
+            mostrarAlerta("Debe ingresar una descripción de actividad.");
 
             return;
         }
@@ -394,17 +315,8 @@ public class GestionController {
             return;
         }
 
-        Actividad actividad =
-                new Actividad(
-
-                        LocalDate.now(),
-
-                        txtActividad.getText(),
-
-                        servicioSeleccionado
-                                .getTecnico()
-                );
-
+        // Obtenemos los datos del "Servicio" en turno para almacenarlos como detalles de la "Actividad"
+        Actividad actividad = new Actividad(LocalDate.now(), txtActividad.getText(), servicioSeleccionado.getTecnico());
         servicioSeleccionado.getActividades().add(actividad);
         txtActividad.clear();
 
@@ -412,119 +324,61 @@ public class GestionController {
         JsonService.guardarServicios();
     }
 
-    private void mostrarAlerta(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
-
+    // Metodo para mostrar las "Actividades" en la "Tabla De Actividades"
     private void cargarActividades() {
 
         if (servicioSeleccionado == null) {
-
             tablaActividades.getItems().clear();
 
             return;
         }
 
-        tablaActividades.setItems(
-                FXCollections.observableArrayList(
-                        servicioSeleccionado.getActividades()
-                )
-        );
+        tablaActividades.setItems(FXCollections.observableArrayList(servicioSeleccionado.getActividades()));
     }
 
+    //Metodo para la "Barra De Busqueda" de elementos en "Tabla De Busqueda"
     @FXML
     private void buscarServicios() {
-
-        var lista =
-                FXCollections
-                        .<ServicioTabla>observableArrayList();
+        var lista = FXCollections.<ServicioTabla>observableArrayList();
 
         for (Servicio servicio : DatosSistema.servicios) {
-
             boolean coincide = true;
 
-            String propietario =
-                    servicio.getDispositivo()
-                            .getPropietario();
+            String propietario = servicio.getDispositivo().getPropietario();
+            String tecnico = servicio.getTecnico();
+            String estado = servicio.getEstado();
+            String prioridad = servicio.getDispositivo().getPrioridad();
 
-            String tecnico =
-                    servicio.getTecnico();
-
-            String estado =
-                    servicio.getEstado();
-
-            String prioridad =
-                    servicio.getDispositivo()
-                            .getPrioridad();
-
-            if (!txtBuscarPropietario
-                    .getText()
-                    .isBlank()) {
-
-                coincide &= propietario
-                        .toLowerCase()
-                        .contains(
-                                txtBuscarPropietario
-                                        .getText()
-                                        .toLowerCase()
-                        );
+            // Filtros de busqueda
+            if (!txtBuscarPropietario.getText().isBlank()) {
+                coincide &= propietario.toLowerCase().contains(txtBuscarPropietario.getText().toLowerCase());
+            }
+            if (!cbFiltroTecnico.getValue().equals("Todos")) {
+                coincide &= tecnico.equals(cbFiltroTecnico.getValue());
+            }
+            if (!cbFiltroEstado.getValue().equals("Todos")) {
+                coincide &= estado.equals(cbFiltroEstado.getValue());
+            }
+            if (!cbFiltroPrioridad.getValue().equals("Todos")) {
+                coincide &= prioridad.equals(cbFiltroPrioridad.getValue());
             }
 
-            if (!cbFiltroTecnico
-                    .getValue()
-                    .equals("Todos")) {
-
-                coincide &= tecnico.equals(
-                        cbFiltroTecnico.getValue()
-                );
-            }
-
-            if (!cbFiltroEstado
-                    .getValue()
-                    .equals("Todos")) {
-
-                coincide &= estado.equals(
-                        cbFiltroEstado.getValue()
-                );
-            }
-
-            if (!cbFiltroPrioridad
-                    .getValue()
-                    .equals("Todos")) {
-
-                coincide &= prioridad.equals(
-                        cbFiltroPrioridad.getValue()
-                );
-            }
-
+            //Añadir elementos a la "Tabla De Busqueda" si coinciden con los filtros
             if (coincide) {
-
                 lista.add(
                         new ServicioTabla(
                                 servicio.getFolio(),
-
                                 propietario,
-
-                                servicio.getDispositivo()
-                                        .getMarca()
-                                        + " "
-                                        + servicio.getDispositivo()
-                                        .getModelo(),
-
+                                servicio.getDispositivo().getMarca() + " " + servicio.getDispositivo().getModelo(),
                                 estado,
-
-                                tecnico
-                        )
+                                tecnico)
                 );
             }
         }
-
         tablaServicios.setItems(lista);
     }
 
+    // Limpieza de filtros en la "Barra De Busqueda"
     @FXML
     private void limpiarFiltros() {
 
@@ -536,41 +390,30 @@ public class GestionController {
         cargarServicios();
     }
 
+    //Metodo generico para alertas varias
+    private void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    // Metodo para abrir el "Creador De Reportes"
     @FXML
     private void abrirDialogReporte() {
-
         try {
-
-            FXMLLoader loader =
-                    new FXMLLoader(
-                            getClass().getResource(
-                                    "/mx/edu/buap/servicetracker/view/ReporteDialog.fxml"
-                            )
-                    );
-
-            Scene scene =
-                    new Scene(loader.load());
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/buap/servicetracker/view/ReporteDialog.fxml"));
+            Scene scene = new Scene(loader.load());
             ReporteDialogController controller = loader.getController();
             controller.setServicio(servicioSeleccionado);
 
-            Stage stage =
-                    new Stage();
-
-            stage.setTitle(
-                    "Reporte Técnico"
-            );
-
-            stage.initModality(
-                    Modality.APPLICATION_MODAL
-            );
-
+            Stage stage = new Stage();
+            stage.setTitle("Reporte Técnico");
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
-
             stage.showAndWait();
 
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }

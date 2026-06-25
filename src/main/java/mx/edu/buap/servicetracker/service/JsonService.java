@@ -13,81 +13,55 @@ import mx.edu.buap.servicetracker.model.Servicio;
 
 public class JsonService {
 
+    // Variables para la creación de directorios de almacenamiento
     private static final String DATA_DIR = "data";
-
     private static final String SERVICIOS_FILE = DATA_DIR + "/servicios.json";
-
     private static final String REPORTES_DIR = DATA_DIR + "/reportes";
 
-    //private static final String USUARIOS_FILE = DATA_DIR + "/usuarios.json"; //Implementación futura
-
-
-    private static final ObjectMapper mapper =
-            new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     static {
-
-        mapper.registerModule(
-                new JavaTimeModule()
-        );
-
-        mapper.enable(
-                SerializationFeature.INDENT_OUTPUT
-        );
+        mapper.registerModule(new JavaTimeModule());
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         File carpeta = new File(DATA_DIR);
+
         if (!carpeta.exists()) {
             carpeta.mkdirs();
         }
 
         File reportesDir = new File(REPORTES_DIR);
+
         if (!reportesDir.exists()) {
             reportesDir.mkdirs();
         }
     }
 
+    //Se guardan los "Servicios" en el directorio establecido
     public static void guardarServicios() {
 
         try {
-
-            mapper.writeValue(
-                    new File(SERVICIOS_FILE),
-                    DatosSistema.servicios
-            );
-
-            System.out.println(
-                    "Servicios guardados correctamente"
-            );
+            mapper.writeValue(new File(SERVICIOS_FILE), DatosSistema.servicios);
+            System.out.println("Servicios guardados correctamente");
 
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }
 
+    //Se cargan los "Servicios" al programa desde el directorio establecido
     public static void cargarServicios() {
-
         try {
-
             File archivo = new File(SERVICIOS_FILE);
 
             if (!archivo.exists()) {
                 return;
             }
 
-            List<Servicio> servicios =
-                    mapper.readValue(
-                            archivo,
-
-                            new TypeReference<
-                                    List<Servicio>>() {}
-                    );
+            List<Servicio> servicios = mapper.readValue(archivo, new TypeReference<List<Servicio>>() {});
 
             DatosSistema.servicios.clear();
-
-            DatosSistema.servicios.addAll(
-                    servicios
-            );
+            DatosSistema.servicios.addAll(servicios);
 
         } catch (Exception e) {
 

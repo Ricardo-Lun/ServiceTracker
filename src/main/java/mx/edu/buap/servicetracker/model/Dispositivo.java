@@ -6,16 +6,12 @@ public class Dispositivo {
 
     private String propietario;
     private String area;
-
     private String marca;
     private String modelo;
     private String numeroSerie;
     private String tipo;
-
     private LocalDate fechaIngreso;
-
     private String prioridad;
-
     private String comentarios;
 
     public Dispositivo() {
@@ -70,6 +66,7 @@ public class Dispositivo {
     public String getComentarios() {return comentarios;}
     public void setComentarios(String comentarios) {this.comentarios = comentarios;}
 
+    // Metodo para convertir el dispositivo a un formato JSON.
     @Override
     public String toString() {
         return "Dispositivo{" +

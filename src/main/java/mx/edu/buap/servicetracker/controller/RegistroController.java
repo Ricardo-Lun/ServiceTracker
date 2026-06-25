@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 public class RegistroController {
 
+    // Variables de obtención de detalles
     @FXML
     private TextField txtPropietario;
     @FXML
@@ -40,21 +41,8 @@ public class RegistroController {
 
     @FXML
     public void initialize() {
-
-        cbTipo.getItems().addAll(
-                "Laptop",
-                "PC Escritorio",
-                "Impresora",
-                "Servidor",
-                "Monitor",
-                "Otro"
-        );
-
-        cbPrioridad.getItems().addAll(
-                "Alta",
-                "Media",
-                "Baja"
-        );
+        cbTipo.getItems().addAll("Laptop", "PC Escritorio", "Impresora", "Servidor", "Monitor", "Otro");
+        cbPrioridad.getItems().addAll("Alta", "Media", "Baja");
     }
 
     @FXML
@@ -62,17 +50,13 @@ public class RegistroController {
 
         txtPropietario.clear();
         txtArea.clear();
-
         txtMarca.clear();
         txtModelo.clear();
         txtSerie.clear();
 
         cbTipo.getSelectionModel().clearSelection();
-
         dpFechaIngreso.setValue(null);
-
         cbPrioridad.getSelectionModel().clearSelection();
-
         txtComentarios.clear();
     }
 
@@ -91,26 +75,14 @@ public class RegistroController {
                 txtComentarios.getText()
         );
 
-
-
+        //Se almacenan "Servicios" con "Dispositivos" dentro, posteriormente se les asigna "Técnico" y "Estado"
         Servicio servicio = new Servicio();
 
-        servicio.setFolio(
-                String.format(
-                        DatosSistema.generarNuevoFolio()
-                )
-        );
-
+        servicio.setFolio(String.format(DatosSistema.generarNuevoFolio()));
         servicio.setDispositivo(dispositivo);
         servicio.setEstado("Recibido");
         servicio.setTecnico("Sin asignar");
         DatosSistema.servicios.add(servicio);
-
-        System.out.println("Servicio creado:");
-
-        System.out.println(servicio);
-        System.out.println("Total servicios: " + DatosSistema.servicios.size());
-
 
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Registro exitoso");
@@ -119,26 +91,15 @@ public class RegistroController {
         alerta.showAndWait();
 
         limpiarFormulario();
-
         JsonService.guardarServicios();
     }
 
+    //Metodo para abrir la pantalla de "Gestion"
     @FXML
     private void abrirGestion(ActionEvent event) {
-
-        try {
-            FXMLLoader loader =
-                    new FXMLLoader(
-                            getClass().getResource(
-                                    "/mx/edu/buap/servicetracker/view/Gestion.fxml"
-                            )
-                    );
+        try {FXMLLoader loader = new FXMLLoader(getClass().getResource("/mx/edu/buap/servicetracker/view/Gestion.fxml"));
             Scene scene = new Scene(loader.load());
-
-            Stage stage =
-                    (Stage) ((Node) event.getSource())
-                            .getScene()
-                            .getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
 
         } catch (Exception e) {
