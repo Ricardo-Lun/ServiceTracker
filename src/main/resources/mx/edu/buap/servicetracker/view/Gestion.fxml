@@ -111,6 +111,7 @@
                         </columns>
                     </TableView>
 
+                    <Button text="Quitar Actividad" onAction="#eliminarActividad" styleClass="btn-warning" maxWidth="1.79E308"/>
                     <Button text="Generar Reporte PDF" onAction="#abrirDialogReporte" styleClass="btn-secondary" maxWidth="1.79E308"/>
                 </VBox>
             </HBox>
