@@ -25,6 +25,9 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
+
 public class GestionController {
 
     // Variables para colocar los datos generales en la "Tabla De Búsqueda"
@@ -328,6 +331,31 @@ public class GestionController {
 
         cargarActividades();
         JsonService.guardarServicios();
+    }
+
+    //Metodo para eliminar actividades de un servicio
+    @FXML
+    private void eliminarActividad() {
+
+        Actividad actividadSeleccionada = tablaActividades.getSelectionModel().getSelectedItem();
+
+        if (actividadSeleccionada == null) {
+            mostrarAlerta("Selecciona una actividad.");
+
+            return;
+        }
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Eliminar actividad");
+        alerta.setHeaderText(null);
+        alerta.setContentText("¿Desea eliminar la actividad seleccionada?");
+
+        Optional<ButtonType> resultado = alerta.showAndWait();
+
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {servicioSeleccionado.getActividades().remove(actividadSeleccionada);
+            cargarActividades();
+            JsonService.guardarServicios();
+        }
     }
 
     // Metodo para mostrar las "Actividades" en la "Tabla De Actividades"
